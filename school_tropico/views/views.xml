@@ -1,0 +1,312 @@
+<odoo>
+  <data>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="base.view_partner_form_estudiante" model="ir.ui.view">
+        <field name="name">Formulario Estudiante</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='sales_purchases']" position="after">
+                <!-- Add your fields or attributes here -->
+                 <page name="estudiantes" string="Escolaridad">
+                   <group name="group_top">
+                     <group name="group_left">
+                       <field name="matricula"/>
+                       <field name="numero_orden"/>
+                       <field name="escuela_id"/>
+                       <field name="year_id"/>
+                       <field name="grado_id"/>
+                       <field name="seccion_id"/>
+                     </group>
+                     <group name="group_right">
+                       <field name="birth_day"/>
+                       <field name="admission_date"/>
+                     </group>
+                   </group>
+                 </page>
+            </xpath>
+
+          <xpath expr="//page[@name='sales_purchases']" position="before">
+                <!-- Add your fields or attributes here -->
+                 <page name="padres" string="Padres">
+                   <field name="padres_ids"/>
+                 </page>
+            </xpath>
+
+        </field>
+    </record>
+
+      <!--Formulario padres -->
+    <record id="school_tropico_padres_form" model="ir.ui.view">
+        <field name="name">Padres Form</field>
+        <field name="model">padres.tropico</field>
+        <field name="arch" type="xml">
+            <form string="Padre">
+                <sheet>
+                    <group name="group_top">
+                        <field name="nombre"/>
+                      <group name="group_left">
+                        <field name="calle1"/>
+                        <field name="ciudad"/>
+                        <field name="country_id"/>
+                      </group>
+                      <group name="group_right">
+                        <field name="telefono"/>
+                        <field name="movil"/>
+                        <field name="email"/>
+                      </group>
+                      <field name="notas"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Lista padres -->
+    <record id="school_tropico_padres_tree" model="ir.ui.view">
+        <field name="name">Padres List</field>
+        <field name="model">padres.tropico</field>
+        <field name="arch" type="xml">
+            <tree string="Padres">
+                <field name="nombre"/>
+            </tree>
+        </field>
+    </record>
+
+      <!--Action padres-->
+      <record model="ir.actions.act_window" id="school_tropico_padres_action_window">
+            <field name="name">Padres</field>
+            <field name="res_model">padres.tropico</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+      <!--Formulario Escuela-->
+      <record id="school_tropico_escuela_form" model="ir.ui.view">
+          <field name="name">Escuela Form</field>
+          <field name="model">escuela.tropico</field>
+          <field name="arch" type="xml">
+              <form string="Escuela">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+                          <field name="calle1"/>
+                          <field name="country_id"/>
+                          <field name="state_id"/>
+                          <field name="niveles_ids"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <!--Lista escuelas-->
+      <record id="school_tropico_escuela_list" model="ir.ui.view">
+          <field name="name">Escuela List</field>
+          <field name="model">escuela.tropico</field>
+          <field name="arch" type="xml">
+              <tree string="Escuelas">
+                  <field name="name"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="school_tropico_escuela_action_window">
+            <field name="name">Escuelas</field>
+            <field name="res_model">escuela.tropico</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+            <!--Formulario Periodo Escolar-->
+      <record id="school_tropico_periodo_form" model="ir.ui.view">
+          <field name="name">Periodo Escolares Form</field>
+          <field name="model">periodo.tropico</field>
+          <field name="arch" type="xml">
+              <form string="Periodos Escolares">
+                  <sheet>
+                      <group name="group_top">
+                          <group name="group_left">
+                              <field name="name"/>
+                          </group>
+                          <group name="group_right">
+                              <field name="start_date"/>
+                              <field name="end_date"/>
+                          </group>
+                          <field name="semestres_ids"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <!--Lista periodos-->
+      <record id="school_tropico_periodo_list" model="ir.ui.view">
+          <field name="name">Periodos Escolares List</field>
+          <field name="model">periodo.tropico</field>
+          <field name="arch" type="xml">
+              <tree string="Periodos Escolares">
+                  <field name="name"/>
+                  <field name="start_date"/>
+                  <field name="end_date"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="school_tropico_periodo_action_window">
+            <field name="name">Periodos Escolares</field>
+            <field name="res_model">periodo.tropico</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+            <!--Formulario Semestres-->
+      <record id="school_tropico_semestre_form" model="ir.ui.view">
+          <field name="name">Semestre Form</field>
+          <field name="model">semestre.tropico</field>
+          <field name="arch" type="xml">
+              <form string="Semestre">
+                  <sheet>
+                      <group name="group_top">
+                          <group name="group_left">
+                              <field name="name"/>
+                          </group>
+                          <group name="group_right">
+                              <field name="start_date"/>
+                              <field name="end_date"/>
+                          </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <!--Lista Semestres-->
+      <record id="school_tropico_semestre_list" model="ir.ui.view">
+          <field name="name">Semestre List</field>
+          <field name="model">semestre.tropico</field>
+          <field name="arch" type="xml">
+              <tree string="Semestres">
+                  <field name="name"/>
+                  <field name="start_date"/>
+                  <field name="end_date"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="school_tropico_semestre_action_window">
+            <field name="name">Semestres</field>
+            <field name="res_model">semestre.tropico</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+            <!--Formulario Niveles-->
+      <record id="school_tropico_nivel_form" model="ir.ui.view">
+          <field name="name">Nivel Form</field>
+          <field name="model">grade.tropico</field>
+          <field name="arch" type="xml">
+              <form string="Nivel">
+                  <sheet>
+                      <group name="group_top">
+                          <group name="group_left">
+                              <field name="name"/>
+                          </group>
+                          <field name="secciones_ids"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <!--Lista niveles-->
+      <record id="school_tropico_nivel_list" model="ir.ui.view">
+          <field name="name">Nivel List</field>
+          <field name="model">grade.tropico</field>
+          <field name="arch" type="xml">
+              <tree string="Nivel">
+                  <field name="name"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="school_tropico_nivel_action_window">
+            <field name="name">Niveles</field>
+            <field name="res_model">grade.tropico</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+            <!--Formulario Secciones-->
+      <record id="school_tropico_seccion_form" model="ir.ui.view">
+          <field name="name">Seccion Form</field>
+          <field name="model">seccion.tropico</field>
+          <field name="arch" type="xml">
+              <form string="Secciones">
+                  <sheet>
+                      <group name="group_top">
+                          <group name="group_left">
+                              <field name="name"/>
+                          </group>
+                          <group name="group_right">
+                              <field name="sequence"/>
+                          </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <!--Lista secciones-->
+      <record id="school_tropico_seccion_list" model="ir.ui.view">
+          <field name="name">Seccion List</field>
+          <field name="model">seccion.tropico</field>
+          <field name="arch" type="xml">
+              <tree string="Seccion">
+                  <field name="name"/>
+                  <field name="sequence"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="school_tropico_seccion_action_window">
+            <field name="name">Seccion</field>
+            <field name="res_model">seccion.tropico</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+
+
+    <!--Top menu item-->
+    <menuitem name="Fundacion Tropico" id="school_tropico_menu_root"/>
+    <!--menu categories-->
+    <menuitem name="Datos Estudiantes" id="school_tropico_menu_1" parent="school_tropico_menu_root"/>
+    <menuitem name="Escuelas" id="school_tropico_menu_2" parent="school_tropico_menu_root"/>
+
+    <!--actions-->
+      <!--Estudiantes-->
+    <menuitem name="Estudiantes" id="school_tropico_menu_1_estudiantes" parent="school_tropico_menu_1"
+              action="base.action_partner_form" sequence="0"/>
+       <!--Padres-->
+    <menuitem name="Padres" id="school_tropico_menu_1_padres" parent="school_tropico_menu_1"
+              action="school_tropico_padres_action_window" sequence="1"/>
+
+      <!--Escuelas-->
+    <menuitem name="Escuelas" id="school_tropico_menu_1_escuelas" parent="school_tropico_menu_2"
+              action="school_tropico_escuela_action_window" sequence="0"/>
+
+      <!--Periodo Escolar-->
+    <menuitem name="Periodos Escolar" id="school_tropico_menu_2_periodo" parent="school_tropico_menu_2"
+              action="school_tropico_periodo_action_window" sequence="1"/>
+
+      <!--Semestre-->
+    <menuitem name="Semestre" id="school_tropico_menu_2_semestre" parent="school_tropico_menu_2"
+              action="school_tropico_semestre_action_window" sequence="2"/>
+
+      <!--Niveles-->
+    <menuitem name="Niveles" id="school_tropico_menu_2_nivel" parent="school_tropico_menu_2"
+              action="school_tropico_nivel_action_window" sequence="3"/>
+
+      <!--Seccion-->
+    <menuitem name="Secciones" id="school_tropico_menu_2_seccion" parent="school_tropico_menu_2"
+              action="school_tropico_seccion_action_window" sequence="4"/>
+
+  </data>
+</odoo>
